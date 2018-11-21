@@ -1,29 +1,104 @@
--   [R Markdown](#r-markdown)
--   [Including Plots](#including-plots)
+BC Liquor Store Price
+================
 
-R Markdown
-----------
+-   [STAT547 Homework 08 repo](#stat547-homework-08-repo)
+    -   [Overview](#overview)
+    -   [Features](#features)
+        -   [Sort the results table by price](#sort-the-results-table-by-price)
+        -   [Add an image](#add-an-image)
+        -   [Use the DT package](#use-the-dt-package)
+        -   [Place the plot and the table in seperate tabs](#place-the-plot-and-the-table-in-seperate-tabs)
+        -   [Add a CSS file](#add-a-css-file)
+        -   [Show the number of results](#show-the-number-of-results)
+        -   [Download the data](#download-the-data)
+        -   [Choosing multiple options](#choosing-multiple-options)
+        -   [Add the sliderInput for Sweetness](#add-the-sliderinput-for-sweetness)
+        -   [shinythemes](#shinythemes)
+    -   [Reference](#reference)
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+STAT547 Homework 08 repo
+========================
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Overview
+--------
 
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
+The task of this homework is to add more features to the BC Liquor Store Price shiny app, which is originally created by [Dean Attali](https://deanattali.com/blog/building-shiny-apps-tutorial/), the data is from [OpenDataBC](https://www.opendatabc.ca/dataset/bc-liquor-store-product-price-list-current-prices)
 
-Including Plots
----------------
+[Here](https://siqia.shinyapps.io/bcl-sa/) is **the link of this shiny app**, hosted by [shinyapps.io](http://www.shinyapps.io/).
 
-You can also embed plots, for example:
+The [bcl\_data](https://github.com/STAT545-UBC-students/hw08-Irissq28/tree/master/bcl-data) folder contains the R script [app.R](https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/bcl-data/app.R), raw data [bcl\_data.csv](https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/bcl-data/bcl-data.csv), [style.css](https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/bcl-data/style.css) is to change the fonts style of this app. [rsconnect](https://github.com/STAT545-UBC-students/hw08-Irissq28/tree/master/bcl-data/rsconnect/shinyapps.io/siqia) is an automatically built folder when deploying the app. [www](https://github.com/STAT545-UBC-students/hw08-Irissq28/tree/master/bcl-data/www) folder contains the image displayed in the app.
 
-![](README-pressure-1.png)
+For more informations about this app, feel free to contact me!
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Features
+--------
+
+### Sort the results table by price
+
+Add an option to sort the results table by price, and get TRUE/FALSE values from the user.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/1.png?raw=true"/>
+
+### Add an image
+
+Add an image of the BC Liquor Store to the UI.
+
+gif source: [GIPHY](https://giphy.com/gifs/lopezontvland-lopez-george-on-tv-land-xT4uQarl44T7Nt6Mes)
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/2.gif?raw=true"/>
+
+### Use the DT package
+
+Use the DT package to turn the current results table into an interactive table BY replacING tableOutput() with DT::dataTableOutput() and renderTable() with DT::renderDataTable().
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/3.png?raw=true" width="400" height="300"/>
+
+### Place the plot and the table in seperate tabs
+
+Place the plot and the table in separate tabs.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/4.png?raw=true" width="400" height="300"/>
+
+### Add a CSS file
+
+Add a CSS file under **www** and use the function `includeCSS()`, Here I changed the fonts style of this app.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/5.png?raw=true"/ width="300" height="200">
+
+### Show the number of results
+
+Shows the number of the results found whenever the filters changed. It means the **options** tab shows the options you have after the filtration of the sidebarLayout information.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/6.png?raw=true"/>
+
+### Download the data
+
+Cick the *Download results* button to get the filtered table, which will be saved as a csv file.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/7.png?raw=true"/>
+
+### Choosing multiple options
+
+Allow the user to search for multiple alcohol types simultaneously, here I choose *Wine* and *Beer* by default.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/8.png?raw=true"/>
+
+### Add the sliderInput for Sweetness
+
+Allow the user to choose the desired sweetness, here I use sweetness from 0 to 5 by default.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/9.png?raw=true"/>
+
+### shinythemes
+
+*shinythemes* is the package contains themes from [Bootstrap](http://bootswatch.com/). I used *cyborg* theme in this app.
+
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/10.png?raw=true" width="400" height="300"/>
+
+Reference
+---------
+
+-   [DT: An R interface to the DataTables library](https://rstudio.github.io/DT/)
+-   [Style your apps with CSS](https://shiny.rstudio.com/articles/css.html)
+-   [Add control widgets](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/)
+-   [Background color themes](http://www.sthda.com/english/wiki/ggplot2-themes-and-background-colors-the-3-elements)
