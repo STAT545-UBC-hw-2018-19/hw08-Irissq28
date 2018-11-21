@@ -32,6 +32,8 @@ For more informations about this app, feel free to contact me!
 
 Add an option to sort the results table by price, and get TRUE/FALSE values from the user.
 
+Prices are sorted in the descending order by default in the result table, if you need the Prices sorted in ascending order, please click here. 
+
 <img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/1.png?raw=true"/>
 
 ### Add an image
