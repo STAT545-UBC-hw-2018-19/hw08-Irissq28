@@ -58,7 +58,7 @@ Place the plot and the table in separate tabs.
 
 Add a CSS file under **www** and use the function `includeCSS()`, Here I changed the fonts style of this app.
 
-<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/5.png?raw=true"/ width="300" height="200">
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/5.png?raw=true" width="300" height="100"/>
 
 ### Show the number of results
 
@@ -76,20 +76,20 @@ Cick the *Download results* button to get the filtered table, which will be save
 
 Allow the user to search for multiple alcohol types simultaneously, here I choose *Wine* and *Beer* by default.
 
-<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/8.png?raw=true"/>
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/8.png?raw=true" width="400" height="300"/>
 
 
 ### Add the sliderInput for Sweetness
 
-Allow the user to choose the desired sweetness, here I use sweetness from 0 to 5 by default.
+Allow the user to choose the desired sweetness, sweetness is set from 0 to 5 by default.
 
 <img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/9.png?raw=true"/>
 
 ### shinythemes
 
-*shinythemes* is the package contains themes from [Bootstrap](http://bootswatch.com/). I used *cyborg* theme in this app.
+*shinythemes* is the package contains themes from [Bootstrap](http://bootswatch.com/). I used **cyborg** theme in this app.
 
-<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/10.png?raw=true" width="400" height="300"/>
+<img align ="center" src="https://github.com/STAT545-UBC-students/hw08-Irissq28/blob/master/feature_images/10.png?raw=true" width="500" height="400"/>
 
 ## Reference
 
