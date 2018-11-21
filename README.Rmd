@@ -1,0 +1,52 @@
+---
+title: "Untitled"
+output:
+  md_document:
+    variant: markdown_github
+    toc: true
+    toc_depth: 4
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# STAT547 Homework 08 repo
+
+## Overview
+
+The task of this homework is to add more features to the BC Liquor store price shiny app, which is originally created by [Dean Attali](https://deanattali.com/blog/building-shiny-apps-tutorial/), the data is from [OpenDataBC](https://www.opendatabc.ca/dataset/bc-liquor-store-product-price-list-current-prices)
+
+[Here](https://siqia.shinyapps.io/bcl-sa/) is the link of this shiny app, hosted by [shinyapps.io](http://www.shinyapps.io/).
+
+The link of the [R script] and [raw data], For more informations about this app, feel free to contact me!
+
+
+## Features
+
+### checkboxInput()
+
+Add an option to sort the results table by price, and get TRUE/FALSE values from the user.
+
+
+
+### Add an image
+
+### Use the DT package
+
+### Place the plot and the table in seperate tabs
+
+### Add a CSS file
+
+### Show the number of results
+
+### Download the data
+
+### Choosing multiple options
+
+## Reference
+
