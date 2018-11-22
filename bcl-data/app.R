@@ -21,9 +21,12 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       img(src = "giphy.gif",align = "left", width = 400),
+      # add silder input
       sliderInput("priceInput", "Select your desired price range",
                   min = 0, max = 130, value = c(15, 30), pre="$"),
+      # add checkbox input
       checkboxInput("sortbyPrice", "Sort by price (Ascending)", FALSE),
+      # add silder input
       sliderInput("sweetness", "Select your desired sweetness",
                   min = 0, max = 10, value = c(0, 5), pre="*"),
       # add multiselect input
@@ -35,15 +38,19 @@ ui <- fluidPage(
                    non_selected_header = "Choose between:",
                    selected_header = "You have selected:"
                  )),
+      # add uiOutput
       uiOutput("countryOutput"),
+      # add download button
       downloadButton('downloadData', "Download results", style="display: block; margin: 0 auto; width: 230px;color: black;")
     ),
     mainPanel(
+      # add tabs
       tabsetPanel(
         tabPanel("Plot", plotOutput("price_hist")),
         tabPanel("Options", verbatimTextOutput("summ")),
         tabPanel("Table", dataTableOutput(outputId = "bcl_data", width = "100%", height = "auto"))
       ),
+      # break
       br(),
       br(),
       br(),
@@ -55,7 +62,6 @@ ui <- fluidPage(
 )
 
 
-# Define server logic required to draw a histogram
 server <- function(input, output) {
   # reactive functions
   bcl_filterd <- reactive({
@@ -71,7 +77,8 @@ server <- function(input, output) {
         dplyr::filter(Sweetness >= input$sweetness[1],
                       Sweetness <= input$sweetness[2]) %>%
     # filter by the type
-        dplyr::filter(Type == input$typeInput) %>%
+    # because 'multiInput' is used in ui, to filter multitype, %in% is applied
+        dplyr::filter(Type %in% input$typeInput) %>%
     # filter by the country
         dplyr::filter(Country == input$countryInput) 
     # add an option ---sort by price
@@ -81,7 +88,6 @@ server <- function(input, output) {
     else{
       bcl_filterd <- dplyr::arrange(bcl_filterd,desc(Price))
     }
-
   })
   #  render the outputs
   output$countryOutput <- renderUI({
@@ -89,13 +95,15 @@ server <- function(input, output) {
                 sort(unique(bcl$Country)),
                 selected = "CANADA")
   })
+  #  render the plot
   output$price_hist <- renderPlot({
     if (is.null(bcl_filterd())) {
       return(NULL)
     }
+      # apply ggplot
       bcl_filterd() %>%
           ggplot(aes(x = Alcohol_Content, fill = Type)) +
-          geom_histogram(alpha = 0.5) +
+          geom_histogram(alpha = 0.5, bins = 30) +
           ggthemes::theme_solarized() +
           labs(x = "Alcohol_Content", y = "Count", 
                title = "Distribution of the Alcohol Content for different alcohol") +
@@ -104,6 +112,7 @@ server <- function(input, output) {
                 # size of axis text changed
                 axis.text = element_text(size = 15))
   })
+  # render the table
   output$bcl_data <- renderDataTable(
      bcl_filterd <- datatable(bcl_filterd()) %>%
       formatStyle(
@@ -113,21 +122,16 @@ server <- function(input, output) {
         fontWeight = 'bold'
       )
   )
+  # render the text
   output$summ <- renderText({
       numOpts <- nrow(bcl_filterd())
       if (is.null(numOpts)) {
-          numOpts <- 0
+          return(NULL)
       }
       paste0("Hi, we found ", numOpts, " options for you!")
   })
   
-  price_country <- reactive({
-      bcl_filterd() %>%
-      group_by(Country) %>%
-      summarise(
-          AvgPrice = mean(Price)
-      )
-  })
+  # download data
   output$downloadData <- downloadHandler(
       filename = function() {
           paste("bcl-data.csv")
@@ -136,6 +140,7 @@ server <- function(input, output) {
           write.csv(bcl_filterd(), file)
       }
   )
+  # license
   url_au <- a("Code and data are from ", "Dean Attali", href="https://deanattali.com/blog/building-shiny-apps-tutorial/")
   output$author <- renderUI({
       tagList(url_au)
